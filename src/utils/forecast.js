@@ -12,7 +12,10 @@ const forecast = (latitude, longitude, callback) => {
         }
         else {
             const currentWeather = body.current;
-            callback(undefined, `${currentWeather.weather_descriptions[0]}. It is currently ${currentWeather.temperature} degrees out. It feels like ${currentWeather.feelslike} degrees out.`);
+            callback(undefined, {
+                weather_desc: `${currentWeather.weather_descriptions[0]}. It is currently ${currentWeather.temperature} degrees out. It feels like ${currentWeather.feelslike} degrees out.`,
+                img: currentWeather.weather_icons
+            });
         }
     });
 }

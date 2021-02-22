@@ -69,9 +69,10 @@ app.get('/weather', (req, res) => {
 
             // To display a web page/text, we use the res.send() method.
             res.send({
-                forecast: forecastData,
+                forecast: forecastData.weather_desc,
                 location,
-                address: address
+                address: address,
+                weatherImg: forecastData.img
             });
         })
     });
