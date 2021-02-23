@@ -1,12 +1,16 @@
 const request = require('postman-request');
 
+// Import the environment variables from the .env file
+const dotenv = require('dotenv');
+dotenv.config();
+
 const forecast = (latitude, longitude, callback) => {
-    const url = `http://api.weatherstack.com/current?access_key=4c416eb8e57610f704ca85a1acbb1134&query=${latitude},${longitude}&units=f`;
+    const url = `http://api.weatherstack.com/current?access_key=${process.env.WEATHERSTACK_API}&query=${latitude},${longitude}&units=f`;
 
     request({ url, json:true }, (error, { body }) => {
         if(error) {
             callback('Unable to connect to the weather services!', undefined);
-        }  
+        }
         else if(body.error) {
             callback('Unable to find location.', undefined);
         }
